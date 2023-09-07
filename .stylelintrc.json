@@ -1,0 +1,17 @@
+{
+    "extends": ["stylelint-config-standard", "stylelint-prettier/recommended"],
+    "plugins": ["stylelint-prettier"],
+    "rules": {
+        "prettier/prettier": true,
+        "font-family-no-missing-generic-family-keyword": [
+            true,
+            {
+                "ignoreFontFamilies": ["StratosSkyeng"]
+            }
+        ],
+        "selector-class-pattern": "^(?:(?:o|c|u|t|s|is|has|_|js|qa)-)?[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:\\[.+\\])?$",
+        "color-function-notation": "legacy",
+        "rule-empty-line-before": null,
+        "property-no-vendor-prefix": null
+    }
+}

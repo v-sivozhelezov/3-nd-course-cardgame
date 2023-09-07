@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: StratosSkyeng;
+    src: url('../assets/fonts/statosskyeng-v1.001/Desktop fonts/stratosskyeng-regular.otf');
+}
+body {
+    background-color: #004980;
+    font-family: StratosSkyeng;
+    overflow: auto;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.app {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.difficulty-box {
+    background-color: #c2f5ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 460px;
+    width: 480px;
+    border-radius: 12px;
+    justify-content: center;
+    margin-top: 7%;
+}
+.difficulty-box__header {
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 40px;
+    color: #004980;
+    text-align: center;
+}
+.difficulty-box__menu {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+}
+.difficulty-box__level {
+    font-family: StratosSkyeng;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 72px;
+    background-color: #fff;
+    color: #0080c1;
+    border: solid 1px transparent;
+    border-radius: 12px;
+}
+.difficulty-box__level input[type='radio'] {
+    display: none;
+}
+.difficulty-box__level label {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    height: 98px;
+    width: 98px;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+.difficulty-box__level label:hover {
+    background-color: rgb(221, 33, 65);
+    color: #fff;
+}
+.difficulty-box__level input[type='radio']:checked + label {
+    background-color: rgb(221, 33, 65);
+    color: #fff;
+}
+.difficulty-box__level input[type='radio']:disabled + label {
+    background: #efefef;
+    color: #666;
+}
+.difficulty-box__button {
+    font-family: StratosSkyeng;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    border: solid 1px transparent;
+    background-color: #7ac100;
+    color: #fff;
+    border-radius: 12px;
+    width: 246px;
+    height: 50px;
+    margin-top: 50px;
+}
+.difficulty-box__button:active {
+    background-color: rgb(221, 33, 65);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.timer {
+    font-family: StratosSkyeng;
+    font-weight: 400;
+    color: white;
+}
+.timer__header {
+    display: flex;
+    justify-content: flex-end;
+    gap: 58px;
+    margin-right: 5px;
+}
+.timer__min {
+    font-size: 16px;
+    line-height: 32px;
+    font-weight: 100;
+}
+.timer__clock-face {
+    font-size: 64px;
+    line-height: 50px;
+}
+
+.restart-button {
+    margin-top: 0;
+}
+
+.card-field {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+} /*# sourceMappingURL=style.css.map */
