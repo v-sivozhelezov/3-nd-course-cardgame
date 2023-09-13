@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: StratosSkyeng;
+    src: url('../assets/fonts/statosskyeng-v1.001/Desktop fonts/stratosskyeng-regular.otf');
+}
+
+body {
+    background-color: #004980;
+    font-family: StratosSkyeng;
+    overflow: auto;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.app {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.difficulty-box {
+    background-color: #c2f5ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 460px;
+    width: 480px;
+    border-radius: 12px;
+    justify-content: center;
+    margin-top: 7%;
+
+    &__header {
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 40px;
+        color: #004980;
+        text-align: center;
+    }
+
+    &__menu {
+        display: flex;
+        gap: 20px;
+        margin-top: 40px;
+    }
+
+    &__level {
+        font-family: StratosSkyeng;
+        font-weight: 400;
+        font-size: 64px;
+        line-height: 72px;
+        // padding: 20px;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        background-color: #fff;
+        color: #0080c1;
+        border: solid 1px transparent;
+        border-radius: 12px;
+
+        // height: 98px;
+        // width: 98px;
+        // cursor: pointer;
+
+        input[type='radio'] {
+            display: none;
+        }
+
+        label {
+            cursor: pointer;
+            user-select: none;
+            height: 98px;
+            width: 98px;
+            display: inline-block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            // border: solid 1px transparent;
+            border-radius: 12px;
+        }
+
+        label:hover {
+            background-color: rgb(221, 33, 65);
+            color: #fff;
+        }
+
+        input[type='radio']:checked + label {
+            background-color: rgb(221, 33, 65);
+            color: #fff;
+        }
+
+        input[type='radio']:disabled + label {
+            background: #efefef;
+            color: #666;
+        }
+    }
+
+    &__button {
+        font-family: StratosSkyeng;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 32px;
+        border: solid 1px transparent;
+        background-color: #7ac100;
+        color: #fff;
+        border-radius: 12px;
+        width: 246px;
+        height: 50px;
+        margin-top: 50px;
+
+        &:active {
+            background-color: rgb(221, 33, 65);
+        }
+    }
+}

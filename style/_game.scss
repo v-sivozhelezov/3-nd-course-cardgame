@@ -1,0 +1,43 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.timer {
+    font-family: StratosSkyeng;
+    font-weight: 400;
+    color: white;
+
+    &__header {
+        display: flex;
+        justify-content: flex-end;
+        gap: 58px;
+        margin-right: 5px;
+    }
+
+    &__min {
+        font-size: 16px;
+        line-height: 32px;
+        font-weight: 100;
+    }
+
+    &__clock-face {
+        font-size: 64px;
+        line-height: 50px;
+    }
+}
+
+.restart-button {
+    margin-top: 0;
+}
+
+.card-field {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}

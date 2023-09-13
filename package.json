@@ -1,0 +1,34 @@
+{
+    "name": "3-nd-course-cardgame",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "format": "prettier --write ./*",
+        "lint:js": "eslint ./*.js",
+        "lint:css": "stylelint ./style/*.css"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/v-sivozhelezov/3-nd-course-cardgame.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/v-sivozhelezov/3-nd-course-cardgame/issues"
+    },
+    "homepage": "https://github.com/v-sivozhelezov/3-nd-course-cardgame#readme",
+    "dependencies": {
+        "lodash": "^4.17.21"
+    },
+    "devDependencies": {
+        "eslint": "^8.48.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-prettier": "^5.0.0",
+        "prettier": "^3.0.3",
+        "stylelint": "^15.10.3",
+        "stylelint-config-standard": "^34.0.0",
+        "stylelint-prettier": "^4.0.2"
+    }
+}
