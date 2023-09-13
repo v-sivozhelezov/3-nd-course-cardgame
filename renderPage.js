@@ -1,4 +1,5 @@
-import { GAME_OVER_PAGE, GAME_PAGE, LEVELS_PAGE } from './routes.js';
+// import { flipCard } from './flipCard.js';
+import { START_GAME_PAGE, GAME_PAGE, LEVELS_PAGE } from './routes.js';
 
 export let difficultyLevel;
 const CARDS = {
@@ -6,6 +7,10 @@ const CARDS = {
     suits: ['бубны', 'черви', 'пики', 'крести'],
 };
 const deckCards = [];
+let pairsOfCards;
+let choice1;
+let choice2;
+document.body.innerHTML = `<div id="app" class="app"></div>`;
 
 CARDS.ranks.reduce((item, rank) => {
     CARDS.suits.reduce((card, suit) => {
@@ -14,7 +19,7 @@ CARDS.ranks.reduce((item, rank) => {
     }, CARDS.suits[0]);
 }, CARDS.ranks[0]);
 
-console.log(deckCards);
+deckCards.sort(() => Math.random() - 0.5);
 
 export function renderPage(page) {
     let appEl = document.getElementById('app');
@@ -52,13 +57,13 @@ export function renderPage(page) {
             );
             event.preventDefault();
 
-            renderPage(GAME_PAGE);
+            renderPage(START_GAME_PAGE);
         });
         return;
     }
 
-    if (page === GAME_PAGE) {
-        console.log(page);
+    if (page === START_GAME_PAGE) {
+        getPairsOfCards();
 
         appEl.innerHTML =
             `<div class="header">
@@ -72,23 +77,19 @@ export function renderPage(page) {
       <button class="difficulty-box__button restart-button">Начать заново</button>
       </div>` +
             `<div class="card-field">` +
-            deckCards
-                .map(() => {
-                    return `<img src="./image/cards/рубашка.jpg" class="card-field__card" alt="рубашка">`;
+            pairsOfCards
+                .map((card, index) => {
+                    return `<div class="card-field__card" data-card-id="${index}">
+                    <img src="./static/cards/${card}.jpg" class="card-field__card" data-card-id="${index}" alt="${card}">
+                    </div>`;
                 })
                 .join('');
         +`</div>`;
-        for (const cardEl of document.querySelectorAll('.card-field__card')) {
-            cardEl.addEventListener('click', () => {
-                renderPage(GAME_OVER_PAGE);
-            });
-        }
+        setTimeout(renderPage, 5000, GAME_PAGE);
         return;
     }
 
-    if (page === GAME_OVER_PAGE) {
-        console.log(page);
-
+    if (page === GAME_PAGE) {
         appEl.innerHTML =
             `<div class="header">
             <div class="timer">
@@ -101,11 +102,61 @@ export function renderPage(page) {
       <button class="difficulty-box__button restart-button">Начать заново</button>
       </div>` +
             `<div class="card-field">` +
-            deckCards
-                .map((card) => {
-                    return `<img src="./image/cards/${card}.jpg" class="card-field__card" alt="${card}">`;
+            pairsOfCards
+                .map((el, index) => {
+                    return `<div class="card-field__card" data-card-id="${index}">
+                    <img src="./static/cards/рубашка.jpg" id="card"  data-card-id="${index}" alt="рубашка">
+                    </div>`;
                 })
                 .join('');
         +`</div>`;
+
+        for (const cardEl of document.querySelectorAll('.card-field__card')) {
+            cardEl.addEventListener(
+                'click',
+                () => {
+                    flipCard({ cardEl });
+                },
+                { once: true },
+            );
+        }
+        return;
     }
+}
+
+function getPairsOfCards() {
+    if (difficultyLevel === `1`) {
+        pairsOfCards = deckCards.slice(0, 3);
+    }
+    if (difficultyLevel === `2`) {
+        pairsOfCards = deckCards.slice(0, 6);
+    }
+    if (difficultyLevel === `3`) {
+        pairsOfCards = deckCards.slice(0, 9);
+    }
+    pairsOfCards.map((card) => {
+        pairsOfCards.push(card);
+    });
+
+    return pairsOfCards.sort(() => Math.random() - 0.5);
+}
+
+function flipCard({ cardEl }) {
+    console.log('clik');
+    const cardId = cardEl.dataset.cardId;
+    cardEl.innerHTML = `<img src="./static/cards/${pairsOfCards[cardId]}.jpg" alt="${pairsOfCards[cardId]}">`;
+    if (choice1 === undefined) {
+        choice1 = pairsOfCards[cardId];
+    } else choice2 = pairsOfCards[cardId];
+    console.log(choice1, choice2);
+
+    if (choice1 !== undefined && choice2 !== undefined)
+        if (choice1 === choice2) {
+            alert('угадали');
+            choice1 = choice2 = undefined;
+        } else {
+            alert('не угадали');
+            choice1 = choice2 = undefined;
+            renderPage(LEVELS_PAGE);
+        }
 }
