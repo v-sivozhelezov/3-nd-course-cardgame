@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin'); // Here!
 
 const mode =
     process.env.NODE_ENV === 'production' ? 'production' : 'development';
@@ -17,7 +18,7 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: 'asset/resource',
+                type: 'asset/inline',
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
@@ -33,5 +34,14 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
     },
-    plugins: [new MiniCssExtractPlugin(), new HtmlWebpackPlugin()],
+    plugins: [
+        new MiniCssExtractPlugin(),
+        // And here!
+        new CopyPlugin({
+            patterns: [{ from: 'static', to: 'static' }],
+        }),
+        new HtmlWebpackPlugin({
+            template: './index.html',
+        }),
+    ],
 };

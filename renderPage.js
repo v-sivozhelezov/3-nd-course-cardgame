@@ -80,7 +80,7 @@ export function renderPage(page) {
             pairsOfCards
                 .map((card, index) => {
                     return `<div class="card-field__card" data-card-id="${index}">
-                    <img src="./static/cards/${card}.jpg" class="card-field__card" data-card-id="${index}" alt="${card}">
+                    <img src="./static/img/cards/${card}.jpg" class="card-field__card" data-card-id="${index}" alt="${card}">
                     </div>`;
                 })
                 .join('');
@@ -105,7 +105,7 @@ export function renderPage(page) {
             pairsOfCards
                 .map((el, index) => {
                     return `<div class="card-field__card" data-card-id="${index}">
-                    <img src="./static/cards/рубашка.jpg" id="card"  data-card-id="${index}" alt="рубашка">
+                    <img src="./static/img/cards/рубашка.jpg" id="card"  data-card-id="${index}" alt="рубашка">
                     </div>`;
                 })
                 .join('');
@@ -144,7 +144,7 @@ function getPairsOfCards() {
 function flipCard({ cardEl }) {
     console.log('clik');
     const cardId = cardEl.dataset.cardId;
-    cardEl.innerHTML = `<img src="./static/cards/${pairsOfCards[cardId]}.jpg" alt="${pairsOfCards[cardId]}">`;
+    cardEl.innerHTML = `<img src="./static/img/cards/${pairsOfCards[cardId]}.jpg" alt="${pairsOfCards[cardId]}">`;
     if (choice1 === undefined) {
         choice1 = pairsOfCards[cardId];
     } else choice2 = pairsOfCards[cardId];
