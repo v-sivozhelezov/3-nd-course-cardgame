@@ -28,6 +28,7 @@ module.exports = {
     },
     optimization: {
         minimizer: ['...', new CssMinimizerPlugin()],
+        minimize: true,
     },
     devtool: process.env.NODE_ENV === 'production' ? false : 'source-map',
     output: {
