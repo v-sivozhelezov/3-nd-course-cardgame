@@ -9,7 +9,8 @@
         "lint:js": "eslint ./*.js",
         "lint:css": "stylelint ./style/*.css",
         "build": "SET NODE_ENV=production&&webpack",
-        "start": "webpack-dev-server --open"
+        "start": "webpack-dev-server --open",
+        "lint:ts": "tsc --noEmit"
     },
     "repository": {
         "type": "git",
@@ -22,6 +23,7 @@
     },
     "homepage": "https://github.com/v-sivozhelezov/3-nd-course-cardgame#readme",
     "dependencies": {
+        "easytimer.js": "^4.6.0",
         "lodash": "^4.17.21"
     },
     "devDependencies": {
@@ -39,6 +41,8 @@
         "stylelint": "^15.10.3",
         "stylelint-config-standard": "^34.0.0",
         "stylelint-prettier": "^4.0.2",
+        "ts-loader": "^9.4.4",
+        "typescript": "^5.2.2",
         "webpack": "^5.88.2",
         "webpack-cli": "^5.1.4",
         "webpack-dev-server": "^4.15.1"
