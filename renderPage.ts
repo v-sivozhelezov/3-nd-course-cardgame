@@ -110,7 +110,7 @@ export function renderPage(page: string) {
         ) as HTMLButtonElement;
 
         restartButtonEl.addEventListener('click', () => {
-            renderPage(LEVELS_PAGE)
+            renderPage(LEVELS_PAGE);
         });
 
         timerHTML = document.getElementById('timer') as HTMLDivElement;
