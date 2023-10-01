@@ -15,7 +15,7 @@ const deckCards: string[] = [];
 let pairsOfCards: string[];
 let choice1: string | undefined;
 let choice2: string | undefined;
-let timerHTML: HTMLElement;
+let timerHTML: HTMLDivElement;
 let timerRender: NodeJS.Timeout;
 let pairsCounter = 0;
 let victory = false;
@@ -32,7 +32,7 @@ CARDS.ranks.map((rank) => {
 deckCards.sort(() => Math.random() - 0.5);
 
 export function renderPage(page: string) {
-    let appEl = document.getElementById('app') as HTMLDivElement;
+    const appEl = document.getElementById('app') as HTMLDivElement;
 
     if (page === LEVELS_PAGE) {
         appEl.innerHTML = `
@@ -116,7 +116,8 @@ export function renderPage(page: string) {
         timerHTML = document.getElementById('timer') as HTMLDivElement;
         myTimer.start({ countdown: true, startValues: { seconds: 6 } });
         myTimer.addEventListener('secondsUpdated', () => {
-            renderTimer(timerHTML);
+            // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+            renderTimer({ timerHTML } as any);
         });
         timerRender = setTimeout(renderPage, 6000, GAME_PAGE);
 
@@ -156,15 +157,18 @@ export function renderPage(page: string) {
         timerHTML = document.getElementById('timer') as HTMLDivElement;
         myTimer.start();
         myTimer.addEventListener('secondsUpdated', () => {
-            renderTimer(timerHTML);
+            // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+            renderTimer({ timerHTML } as any);
         });
 
         for (const cardEl of document.querySelectorAll('.card-field__card')) {
             cardEl.addEventListener(
                 'click',
                 () => {
+                    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
                     flipCard({ cardEl } as any);
-                    renderTimer(timerHTML);
+                    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+                    renderTimer({ timerHTML } as any);
                 },
                 { once: true },
             );

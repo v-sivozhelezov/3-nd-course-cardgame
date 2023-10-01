@@ -1,5 +1,6 @@
-export let Timer = require('easytimer.js').Timer;
-export let myTimer = new Timer();
+/* eslint @typescript-eslint/no-var-requires: "off" */
+export const Timer = require('easytimer.js').Timer;
+export const myTimer = new Timer();
 export const getMinutes = () => {
     const minutes = myTimer.getTimeValues().minutes;
     return minutes > 9 ? minutes : '0' + minutes;
@@ -9,7 +10,7 @@ export const getSeconds = () => {
     return seconds > 9 ? seconds : '0' + seconds;
 };
 
-export function renderTimer(timerHTML:HTMLElement) {
+export function renderTimer({ timerHTML }: { timerHTML: HTMLDivElement }) {
     timerHTML.innerHTML = ` <div class="timer__header" >
     <h4 class="timer__min">min</h4>
     <h4 class="timer__min">sek</h4>
