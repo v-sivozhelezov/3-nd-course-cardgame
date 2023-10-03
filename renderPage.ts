@@ -1,3 +1,10 @@
+import { comparePair, victory } from './comparePair';
+import {
+    deckCards,
+    getDeckCards,
+    getRandomDeckCards,
+    randomDeckCards,
+} from './deckCards';
 import { myTimer, renderTimer, getMinutes, getSeconds } from './helpers';
 import {
     START_GAME_PAGE,
@@ -7,29 +14,17 @@ import {
 } from './routes';
 
 export let difficultyLevel: File | string;
-const CARDS = {
-    ranks: ['6', '7', '8', '9', '10', 'валет', 'дама', 'король', 'туз'],
-    suits: ['бубны', 'черви', 'пики', 'крести'],
-};
-const deckCards: string[] = [];
-let pairsOfCards: string[];
+export let pairsOfCards: string[];
 let choice1: string | undefined;
 let choice2: string | undefined;
 let timerHTML: HTMLDivElement;
 let timerRender: NodeJS.Timeout;
-let pairsCounter = 0;
-let victory = false;
+let pairsCounter: number;
 
 document.body.innerHTML = `<div id="app" class="app"></div>`;
 
-CARDS.ranks.map((rank) => {
-    CARDS.suits.map((suit) => {
-        const card = rank + ` ` + suit;
-        deckCards.push(card);
-    }, CARDS.suits[0]);
-}, CARDS.ranks[0]);
-
-deckCards.sort(() => Math.random() - 0.5);
+getDeckCards();
+getRandomDeckCards();
 
 export function renderPage(page: string) {
     const appEl = document.getElementById('app') as HTMLDivElement;
@@ -83,6 +78,9 @@ export function renderPage(page: string) {
 
     if (page === START_GAME_PAGE) {
         getPairsOfCards();
+        getRandomDeckCards();
+        console.log(deckCards);
+        console.log(randomDeckCards);
 
         appEl.innerHTML =
             `<div class="header">
@@ -165,6 +163,7 @@ export function renderPage(page: string) {
             cardEl.addEventListener(
                 'click',
                 () => {
+                    pairsCounter++;
                     // eslint-disable-next-line  @typescript-eslint/no-explicit-any
                     flipCard({ cardEl } as any);
                     // eslint-disable-next-line  @typescript-eslint/no-explicit-any
@@ -212,13 +211,13 @@ export function renderPage(page: string) {
 
 function getPairsOfCards() {
     if (difficultyLevel === `1`) {
-        pairsOfCards = deckCards.slice(0, 3);
+        pairsOfCards = randomDeckCards.slice(0, 3);
     }
     if (difficultyLevel === `2`) {
-        pairsOfCards = deckCards.slice(0, 6);
+        pairsOfCards = randomDeckCards.slice(0, 6);
     }
     if (difficultyLevel === `3`) {
-        pairsOfCards = deckCards.slice(0, 9);
+        pairsOfCards = randomDeckCards.slice(0, 9);
     }
     pairsOfCards.map((card) => {
         pairsOfCards.push(card);
@@ -235,19 +234,12 @@ function flipCard({ cardEl }: { cardEl: HTMLElement }) {
 
     if (choice1 === undefined) {
         choice1 = pairsOfCards[Number(cardId)];
-    } else choice2 = pairsOfCards[Number(cardId)];
-
-    if (choice1 !== undefined && choice2 !== undefined)
-        if (choice1 === choice2) {
-            pairsCounter++;
-            choice1 = undefined;
-            choice2 = undefined;
-        } else {
-            victory = false;
-            renderPage(RESULTS_PAGE);
-        }
-    if (pairsCounter === pairsOfCards.length / 2) {
-        victory = true;
-        renderPage(RESULTS_PAGE);
+        console.log(choice1);
+    } else {
+        choice2 = pairsOfCards[Number(cardId)];
+        console.log(choice2);
+        comparePair({ choice1, choice2, pairsCounter });
+        choice1 = undefined;
+        choice2 = undefined;
     }
 }
