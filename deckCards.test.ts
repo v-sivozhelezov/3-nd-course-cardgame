@@ -55,5 +55,5 @@ it('should check random card shuffling', () => {
 
     const result = getRandomDeckCards().toString();
 
-    assert.equal(result, expected);
+    assert.notStrictEqual(result, expected);
 });

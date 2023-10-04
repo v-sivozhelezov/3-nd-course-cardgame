@@ -36,8 +36,9 @@
 
 .card-field {
     margin-top: 40px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    grid-template-columns: repeat(6, 1fr);
+    justify-content: start;
     gap: 10px;
 }
