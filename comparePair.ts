@@ -1,10 +1,11 @@
-// export let victory: boolean = false;
-// import { pairsOfCards, renderPage } from './renderPage';
-// import { RESULTS_PAGE } from './routes';
+export let victory: boolean = false;
+import { pairsOfCards, renderPage } from './renderPage';
+import { RESULTS_PAGE } from './routes';
 
 export function comparePair({
     choice1,
     choice2,
+
     pairsCounter,
 }: {
     choice1: string | undefined;
