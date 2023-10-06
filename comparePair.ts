@@ -3,9 +3,9 @@ import { pairsOfCards, renderPage } from './renderPage';
 import { RESULTS_PAGE } from './routes';
 
 export function comparePair({
-    // choice1,
-    // choice2,
-    // pairsCounter,
+    choice1,
+    choice2,
+    pairsCounter,
 }: {
     choice1: string | undefined;
     choice2: string | undefined;
